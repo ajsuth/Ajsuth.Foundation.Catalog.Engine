@@ -1,6 +1,9 @@
 # Extended Sitecore Commerce Catalog
 Custom Sitecore Commerce catalog plugin project with extended functionality.
 
+## Functionality
+* Abiltity to order sellable item and variant images
+
 ## Installation Instructions
 1. Download the repository.
 2. Add the **Ajsuth.Foundation.Catalog.Engine.csproj** to the _**Sitecore Commerce Engine**_ solution.
