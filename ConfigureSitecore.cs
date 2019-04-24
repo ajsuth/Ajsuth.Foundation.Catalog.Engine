@@ -40,6 +40,11 @@ namespace Ajsuth.Foundation.Catalog.Engine
                 .ConfigurePipeline<IPopulateEntityViewActionsPipeline>(pipeline => pipeline
                     .Add<Pipelines.Blocks.PopulateSellableItemsEditActionsBlock>().After<PopulateSellableItemsEditActionsBlock>()
                 )
+
+                .ConfigurePipeline<IGetEntityViewPipeline>(pipeline => pipeline
+                    .Add<Pipelines.Blocks.GetSellableItemStatusViewBlock>().After<GetSellableItemDetailsViewBlock>()
+                )
+
             );
 
             services.RegisterAllCommands(assembly);
