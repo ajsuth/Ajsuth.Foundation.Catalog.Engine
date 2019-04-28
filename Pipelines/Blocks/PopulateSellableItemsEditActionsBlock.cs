@@ -47,7 +47,10 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
         public override async Task<EntityView> Run(EntityView entityView, CommercePipelineExecutionContext context)
         {
             var entityViewArgument = context.CommerceContext.GetObject<EntityViewArgument>();
-            if (!(entityViewArgument?.Entity is SellableItem) || !string.IsNullOrEmpty(entityViewArgument.ForAction))
+			var enablementPolicy = context.GetPolicy<Policies.CatalogFeatureEnablementPolicy>();
+			if (!enablementPolicy.MoveImageActions
+					|| !(entityViewArgument?.Entity is SellableItem)
+					|| !string.IsNullOrEmpty(entityViewArgument.ForAction))
             {
                 return entityView;
             }

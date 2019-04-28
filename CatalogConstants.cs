@@ -37,5 +37,15 @@ namespace Ajsuth.Foundation.Catalog.Engine
                 public const string PopulateSellableItemsEditActions = "Catalog.Block.PopulateSellableItemsEditActions";
             }
         }
+
+        public static class InventoryStatus
+        {
+            public const string InStock = "In Stock";
+            public const string OnPreOrder = "On Pre-Order";
+            public const string OnBackOrder = "On Back Order";
+            public const string OutOfStock = "Out of Stock";
+            public const string Perpetual = "Perpetual";
+            public const string NotAvailable = "Not Available";
+        }
     }
 }

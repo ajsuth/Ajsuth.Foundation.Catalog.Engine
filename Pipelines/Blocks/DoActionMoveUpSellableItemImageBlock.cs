@@ -57,10 +57,12 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
         /// </returns>
         public override async Task<EntityView> Run(EntityView entityView, CommercePipelineExecutionContext context)
         {
-            if (string.IsNullOrEmpty(entityView?.Action) ||
-                    string.IsNullOrEmpty(entityView.EntityId) ||
-                    (string.IsNullOrEmpty(entityView.ItemId) ||
-                    !entityView.Action.Equals(context.GetPolicy<Policies.KnownCatalogActionsPolicy>().MoveUpSellableItemImage, StringComparison.OrdinalIgnoreCase)))
+			var enablementPolicy = context.GetPolicy<Policies.CatalogFeatureEnablementPolicy>();
+			if (!enablementPolicy.MoveImageActions
+					|| string.IsNullOrEmpty(entityView?.Action)
+                    || string.IsNullOrEmpty(entityView.EntityId)
+                    || (string.IsNullOrEmpty(entityView.ItemId)
+                    || !entityView.Action.Equals(context.GetPolicy<Policies.KnownCatalogActionsPolicy>().MoveUpSellableItemImage, StringComparison.OrdinalIgnoreCase)))
             {
                 return entityView;
             }

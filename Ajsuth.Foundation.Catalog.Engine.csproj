@@ -1,21 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Description>Sitecore Commerce Sample Plugin Template</Description>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <Authors>Sitecore</Authors>
-    <TargetFramework>net462</TargetFramework>
-    <PackageTags>$(PackageTags);Commerce;Sample;Plugin</PackageTags>
-    <PackageIconUrl>http://www.sitecore.net/favicon.ico</PackageIconUrl>
-    <PackageProjectUrl>http://www.sitecore.net/</PackageProjectUrl>
-    <PackageLicenseUrl>http://www.sitecore.net/platform/pricing.aspx</PackageLicenseUrl>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug 9.1' Or '$(Configuration)'=='Release 9.1' ">
+    <TargetFramework>net471</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Sitecore.Commerce.Core">
-      <Version>2.4.37</Version>
-    </PackageReference>
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' Or '$(Configuration)'=='Release' ">
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Configurations>Debug;Release;Debug 9.1;Release 9.1</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(Configuration)'=='Debug 9.1' Or '$(Configuration)'=='Release 9.1' ">
+    <PackageReference Include="Sitecore.Commerce.Core" Version="3.0.*" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="3.0.*" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="3.0.*" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.Views" Version="3.0.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(Configuration)'=='Debug' Or '$(Configuration)'=='Release' ">
+    <PackageReference Include="Sitecore.Commerce.Core" Version="2.4.37" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="2.4.21" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="2.4.11" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Views" Version="2.4.37" />
   </ItemGroup>
 
@@ -23,16 +30,31 @@
     <Content Include="ConfigureSitecore.cs" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Debug 9.1'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' Or '$(Configuration)' == 'Release 9.1' ">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <Reference Include="System.Transactions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningsAsErrors />
+    <NoWarn>NU1603</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors />
+    <NoWarn>NU1603</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 9.1|AnyCPU'">
+    <WarningsAsErrors />
+    <NoWarn>NU1603</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 9.1|AnyCPU'">
+    <WarningsAsErrors />
+    <NoWarn>NU1603</NoWarn>
+  </PropertyGroup>
 </Project>
