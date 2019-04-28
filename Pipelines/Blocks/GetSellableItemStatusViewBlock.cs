@@ -55,8 +55,10 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 			Condition.Requires(entityView).IsNotNull($"{this.Name}: The argument can not be null");
 
 			var entityViewArgument = context.CommerceContext.GetObject<EntityViewArgument>();
-			var policy = context.CommerceContext.GetPolicy<KnownCatalogViewsPolicy>();
-			if (string.IsNullOrEmpty(entityViewArgument?.ViewName)
+			var policy = context.CommerceContext.GetPolicy<Policies.KnownCatalogViewsPolicy>();
+			var enablementPolicy = context.GetPolicy<Policies.CatalogFeatureEnablementPolicy>();
+			if (!enablementPolicy.StatusViews
+					|| string.IsNullOrEmpty(entityViewArgument?.ViewName)
 					|| !entityViewArgument.ViewName.Equals(policy.Master, StringComparison.OrdinalIgnoreCase)
 					&& !entityViewArgument.ViewName.Equals(policy.Variant, StringComparison.OrdinalIgnoreCase))
 			{
@@ -69,13 +71,13 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 				return await Task.FromResult(entityView).ConfigureAwait(false);
 			}
 			
-			var inventoryStatusView = new EntityView { Name = "Inventory Status", Icon = "barrels", UiHint = "Table" };
+			var inventoryStatusView = new EntityView { Name = policy.InventoryStatus, Icon = "barrels", UiHint = "Table" };
 			entityView.ChildViews.Insert(0, inventoryStatusView);
 
-			var pricingStatusView = new EntityView { Name = "Pricing Status", Icon = "moneybag_dollar", UiHint = "Table" };
+			var pricingStatusView = new EntityView { Name = policy.PricingStatus, Icon = "moneybag_dollar", UiHint = "Table" };
 			entityView.ChildViews.Insert(0, pricingStatusView);
 
-			var siteReadyStatusView = new EntityView { Name = "Site-Ready Status", Icon = "clipboard_checks", UiHint = "Table" };
+			var siteReadyStatusView = new EntityView { Name = policy.SiteReadyStatus, Icon = "clipboard_checks", UiHint = "Table" };
 			entityView.ChildViews.Insert(0, siteReadyStatusView);
 			
 			var component = sellableItem.HasComponent<CatalogsComponent>() ? sellableItem.GetComponent<CatalogsComponent>() : null;

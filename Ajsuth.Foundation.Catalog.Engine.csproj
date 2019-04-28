@@ -1,29 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Condition=" '$(Configuration)'=='Debug 9.1' ">
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug 9.1' Or '$(Configuration)'=='Release 9.1' ">
     <TargetFramework>net471</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)'!='Debug 9.1' ">
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' Or '$(Configuration)'=='Release' ">
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Configurations>Debug;Release;Debug 9.1</Configurations>
+    <Configurations>Debug;Release;Debug 9.1;Release 9.1</Configurations>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Pipelines\Blocks\InitialiseTestProductsBlock.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)'=='Debug 9.1' Or '$(Configuration)'=='Release 9.1' ">
     <PackageReference Include="Sitecore.Commerce.Core" Version="3.0.*" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="3.0.*" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="3.0.*" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Views" Version="3.0.*" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(Configuration)'!='Debug 9.1' ">
+  <ItemGroup Condition=" '$(Configuration)'=='Debug' Or '$(Configuration)'=='Release' ">
     <PackageReference Include="Sitecore.Commerce.Core" Version="2.4.37" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="2.4.21" />
     <PackageReference Include="Sitecore.Commerce.Plugin.Inventory" Version="2.4.11" />
@@ -34,11 +30,11 @@
     <Content Include="ConfigureSitecore.cs" />
   </ItemGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' != 'Release'">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Debug 9.1'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' Or '$(Configuration)' == 'Release 9.1' ">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
@@ -48,6 +44,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors />
+    <NoWarn>NU1603</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 9.1|AnyCPU'">
     <WarningsAsErrors />
     <NoWarn>NU1603</NoWarn>
   </PropertyGroup>

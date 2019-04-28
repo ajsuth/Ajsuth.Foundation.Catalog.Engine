@@ -12,7 +12,10 @@ namespace Ajsuth.Foundation.Catalog.Engine.Policies
     /// </summary>
     /// <seealso cref="T:Sitecore.Commerce.Core.Policy" />
     public class KnownCatalogViewsPolicy : Sitecore.Commerce.Plugin.Catalog.KnownCatalogViewsPolicy
-    {
-        public string Images { get; set; } = nameof(Images);
-    }
+	{
+		public string Images { get; set; } = nameof(Images);
+		public string SiteReadyStatus { get; set; } = nameof(SiteReadyStatus);
+		public string PricingStatus { get; set; } = nameof(PricingStatus);
+		public string InventoryStatus { get; set; } = nameof(InventoryStatus);
+	}
 }
