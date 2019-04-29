@@ -32,6 +32,11 @@ namespace Ajsuth.Foundation.Catalog.Engine
                 public const string DoActionMoveUpSellableItemImage = "Catalog.Block.DoActionMoveUpSellableItemImage";
 
                 /// <summary>
+                /// The get sellable item status block name.
+                /// </summary>
+                public const string GetSellableItemStatusViewBlock = "Catalog.Block.GetSellableItemStatusViewBlock";
+
+                /// <summary>
                 /// The populate sellable items edit actions block name.
                 /// </summary>
                 public const string PopulateSellableItemsEditActions = "Catalog.Block.PopulateSellableItemsEditActions";

@@ -30,7 +30,7 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 	///         Sitecore.Commerce.EntityViews.EntityView, Sitecore.Commerce.Core.CommercePipelineExecutionContext}
 	///     </cref>
 	/// </seealso>
-	[PipelineDisplayName("CatalogConstants.Pipelines.Blocks.GetSellableItemStatusViewBlock")]
+	[PipelineDisplayName(Engine.CatalogConstants.Pipelines.Blocks.GetSellableItemStatusViewBlock)]
 	public class GetSellableItemStatusViewBlock : PipelineBlock<EntityView, EntityView, CommercePipelineExecutionContext>
 	{
 		/// <summary>Gets or sets the commander.</summary>
@@ -303,7 +303,7 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 				return Engine.CatalogConstants.InventoryStatus.Perpetual;
 			}
 			
-			if (string.IsNullOrWhiteSpace(variantId))
+			if (string.IsNullOrWhiteSpace(variantId) && !string.IsNullOrWhiteSpace(inventorySetName))
 			{
 				var inventoryInformation = await Commander.Command<GetInventoryInformationCommand>().Process(context.CommerceContext, inventorySetName, sellableItem.ProductId).ConfigureAwait(false);
 				if (inventoryInformation != null)
