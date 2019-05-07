@@ -1,7 +1,7 @@
 # Extended Sitecore Commerce Catalog
 Custom Sitecore Commerce catalog plugin project with extended functionality.
 
-## Functionality
+## Features
 | Feature                 | Description | Policy Property |
 | ----------------------- | ----------- | --------------- |
 | Order Image Actions     | Abiltity to order sellable item and variant images. | MoveImageActions |
@@ -21,11 +21,13 @@ Custom Sitecore Commerce catalog plugin project with extended functionality.
 4. Run the _**Sitecore Commerce Engine**_ from Visual Studio or deploy the solution and run from IIS.
 
 ## Disabling Features
-In the environment configuration files, add the CatalogFeatureEnablementPolicy and set the desired feature to false. For example:
-`{
+In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired feature to false. (See the Policy Property column in Features). For example:
+```javascript
+{
 	"$type": "Ajsuth.Foundation.Catalog.Engine.Policies.CatalogFeatureEnablementPolicy, Ajsuth.Foundation.Catalog.Engine",
 	"MoveImageActions": false
-}`
+}
+```
 
 ## Disclaimer
 The code provided in this repository is sample code only. It is not intended for production usage and not endorsed by Sitecore.
