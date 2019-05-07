@@ -21,7 +21,7 @@ Custom Sitecore Commerce catalog plugin project with extended functionality.
 4. Run the _**Sitecore Commerce Engine**_ from Visual Studio or deploy the solution and run from IIS.
 
 ## Disabling Features
-In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired feature to false. (See the Policy Property column in Features). For example:
+In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired feature to `false`. (See the **Policy Property** column in [Features](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/blob/master/README.md#features)). For example:
 ```javascript
 {
 	"$type": "Ajsuth.Foundation.Catalog.Engine.Policies.CatalogFeatureEnablementPolicy, Ajsuth.Foundation.Catalog.Engine",
