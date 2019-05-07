@@ -2,8 +2,17 @@
 Custom Sitecore Commerce catalog plugin project with extended functionality.
 
 ## Functionality
-* Abiltity to order sellable item and variant images.
-* Site-Ready Status, Pricing Status, and Inventory Status entity views added to the sellable item and variant views. _Bundles not currently supported._
+| Feature                 | Description | Policy Property |
+| ----------------------- | ----------- | --------------- |
+| Order Image Actions     | Abiltity to order sellable item and variant images. | MoveImageActions |
+| Status Entity Views     | Site-Ready Status, Pricing Status, and Inventory Status entity views added to the sellable item and variant views. | StatusViews |
+| Catalog Navigation View | Catalog Navigation Entity View added to category and sellable item views to see descendent associations| CatalogNavigationView |
+
+## Known Issues:
+| Feature                 | Description | Issue |
+| ----------------------- | ----------- | ----- |
+| Status Entity Views     | Bundles not currently supported in Status views. | [#2](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/2) |
+| Status Entity Views     | Status views currently only render status for latest entity version.| [#3](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/3) |
 
 ## Installation Instructions
 1. Download the repository.
