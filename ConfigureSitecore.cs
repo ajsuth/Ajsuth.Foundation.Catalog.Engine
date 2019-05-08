@@ -43,8 +43,18 @@ namespace Ajsuth.Foundation.Catalog.Engine
 
                 .ConfigurePipeline<IGetEntityViewPipeline>(pipeline => pipeline
                     .Add<Pipelines.Blocks.GetSellableItemStatusViewBlock>().After<GetSellableItemDetailsViewBlock>()
+                    .Add<Pipelines.Blocks.GetCategoryDetailsViewBlock>().After<GetCategoryDetailsViewBlock>()
+                    .Add<Pipelines.Blocks.GetSellableItemDetailsViewBlock>().After<GetSellableItemDetailsViewBlock>()
                 )
 
+                .ConfigurePipeline<ICreateRelationshipPipeline>(pipeline => pipeline
+                    .Replace<UpdateCatalogHierarchyBlock, Pipelines.Blocks.UpdateCatalogHierarchyBlock>()
+                )
+
+                .ConfigurePipeline<IDeleteRelationshipPipeline>(pipeline => pipeline
+                    .Replace<UpdateCatalogHierarchyBlock, Pipelines.Blocks.UpdateCatalogHierarchyBlock>()
+                )
+                
             );
 
             services.RegisterAllCommands(assembly);

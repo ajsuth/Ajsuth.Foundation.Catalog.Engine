@@ -1,23 +1,20 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CatalogFeatureEnablementPolicy.cs" company="Sitecore Corporation">
+// <copyright file="CatalogNavigationPolicy.cs" company="Sitecore Corporation">
 //   Copyright (c) Sitecore Corporation 1999-2019
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Ajsuth.Foundation.Catalog.Engine.Policies
 {
-	using Sitecore.Commerce.Core;
+    using Sitecore.Commerce.Core;
+
     /// <inheritdoc />
     /// <summary>
-    /// Defines the catalog feature enablement policy
+    /// Defines the catalog navigation policy
     /// </summary>
     /// <seealso cref="T:Sitecore.Commerce.Core.Policy" />
-    public class CatalogFeatureEnablementPolicy : Policy
+    public class CatalogNavigationPolicy : Policy
     {
-        public bool CatalogNavigationView { get; set; }
-
-        public bool MoveImageActions { get; set; }
-
-        public bool StatusViews { get; set; }
+        public bool UseUglySitecoreIds { get; set; } = true;
     }
 }
