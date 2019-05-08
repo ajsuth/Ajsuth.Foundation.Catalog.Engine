@@ -1,5 +1,5 @@
 # Extended Sitecore Commerce Catalog
-Custom Sitecore Commerce catalog plugin project with extended functionality within the Business Tools.
+Custom Sitecore Commerce catalog plugin project with extended functionality for the Business Tools.
 
 ## Features
 ### Order Image Actions
