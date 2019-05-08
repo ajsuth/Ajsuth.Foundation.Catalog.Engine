@@ -2,6 +2,9 @@
 Custom Sitecore Commerce catalog plugin project with extended functionality for the Business Tools.
 
 ## Features
+- [Order Image Actions](#order-image-actions)
+- [Status Entity Views](#status-entity-views)
+- [Catalog Navigation View](#catalog-navigation-view)
 ### Order Image Actions
 Adds actions, **Move Image Up** and **Move Image Down**, to the **Images** entity view, to provide the business user the ability to order sellable item and variant images.
 
@@ -37,7 +40,7 @@ _Category entity view._
 _Sellable Item entity view._
 
 ## Enabling Features
-In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired features to `true`. (See the **Policy Property** column in [Features](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine#features)). For example:
+In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired features to `true`. (See the **Policy Property** column in [Features](#features)). For example:
 ```javascript
 {
 	"$type": "Ajsuth.Foundation.Catalog.Engine.Policies.CatalogFeatureEnablementPolicy, Ajsuth.Foundation.Catalog.Engine",
@@ -49,7 +52,7 @@ In the environment configuration files, add the **CatalogFeatureEnablementPolicy
 1. Download the repository.
 2. Add the **Ajsuth.Foundation.Catalog.Engine.csproj** to the _**Sitecore Commerce Engine**_ solution.
 3. In the _**Sitecore Commerce Engine**_ project, add a reference to the **Ajsuth.Foundation.Catalog.Engine** project.
-4. Enable desired features, following [Enabling Features](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine#enabling-features).
+4. Enable desired features, following [Enabling Features](#enabling-features).
 5. Run the _**Sitecore Commerce Engine**_ from Visual Studio or deploy the solution and run from IIS.
 6. Run the **Bootstrap** command on the _**Sitecore Commerce Engine**_.  
 
