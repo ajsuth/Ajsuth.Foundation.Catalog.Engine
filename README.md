@@ -1,9 +1,18 @@
 # Extended Sitecore Commerce Catalog
 Custom Sitecore Commerce catalog plugin project with extended functionality.
 
-## Functionality
-* Abiltity to order sellable item and variant images.
-* Site-Ready Status, Pricing Status, and Inventory Status entity views added to the sellable item and variant views. _Bundles not currently supported._
+## Features
+| Feature                 | Description | Policy Property |
+| ----------------------- | ----------- | --------------- |
+| Order Image Actions     | Abiltity to order sellable item and variant images. | MoveImageActions |
+| Status Entity Views     | Site-Ready Status, Pricing Status, and Inventory Status entity views added to the sellable item and variant views. | StatusViews |
+| Catalog Navigation View | Catalog Navigation Entity View added to category and sellable item views to see descendent associations| CatalogNavigationView |
+
+## Known Issues:
+| Feature                 | Description | Issue |
+| ----------------------- | ----------- | ----- |
+| Status Entity Views     | Bundles not currently supported in Status views. | [#2](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/2) |
+| Status Entity Views     | Status views currently only render status for latest entity version.| [#3](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/3) |
 
 ## Installation Instructions
 1. Download the repository.
@@ -12,11 +21,13 @@ Custom Sitecore Commerce catalog plugin project with extended functionality.
 4. Run the _**Sitecore Commerce Engine**_ from Visual Studio or deploy the solution and run from IIS.
 
 ## Disabling Features
-In the environment configuration files, add the CatalogFeatureEnablementPolicy and set the desired feature to false. For example:
-`{
+In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired feature to `false`. (See the **Policy Property** column in [Features](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/blob/master/README.md#features)). For example:
+```javascript
+{
 	"$type": "Ajsuth.Foundation.Catalog.Engine.Policies.CatalogFeatureEnablementPolicy, Ajsuth.Foundation.Catalog.Engine",
 	"MoveImageActions": false
-}`
+}
+```
 
 ## Disclaimer
 The code provided in this repository is sample code only. It is not intended for production usage and not endorsed by Sitecore.
