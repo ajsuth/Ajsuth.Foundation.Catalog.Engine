@@ -13,6 +13,8 @@ Custom Sitecore Commerce catalog plugin project with extended functionality.
 | ----------------------- | ----------- | ----- |
 | Status Entity Views     | Bundles not currently supported in Status views. | [#2](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/2) |
 | Status Entity Views     | Status views currently only render status for latest entity version.| [#3](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/3) |
+| Catalog Navigation View | The catalog is not defined as the breadcrumb's root. | [#4](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/4) |
+| Catalog Navigation View | Associating a category to the catalog and another category will prevent the catalog-category breadcrumb from displaying in the list of breadcrumbs. | [#5](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/5) |
 
 ## Installation Instructions
 1. Download the repository.
@@ -20,12 +22,12 @@ Custom Sitecore Commerce catalog plugin project with extended functionality.
 3. In the _**Sitecore Commerce Engine**_ project, add a reference to the **Ajsuth.Foundation.Catalog.Engine** project.
 4. Run the _**Sitecore Commerce Engine**_ from Visual Studio or deploy the solution and run from IIS.
 
-## Disabling Features
+## Enabling Features
 In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired feature to `false`. (See the **Policy Property** column in [Features](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/blob/master/README.md#features)). For example:
 ```javascript
 {
 	"$type": "Ajsuth.Foundation.Catalog.Engine.Policies.CatalogFeatureEnablementPolicy, Ajsuth.Foundation.Catalog.Engine",
-	"MoveImageActions": false
+	"MoveImageActions": true
 }
 ```
 
