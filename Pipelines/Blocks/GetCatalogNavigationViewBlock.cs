@@ -103,7 +103,12 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
         {
             if (context.CommerceContext.GetPolicy<CatalogNavigationPolicy>().UseUglySitecoreIds)
             {
-                return this.ToParentList(catalogItem.ParentCategoryList);
+                var parentList = this.ToParentList(catalogItem.ParentCategoryList);
+                if ((parentList == null || !parentList.Any()) && !(catalogItem is Catalog))
+                {
+                    return new List<string>() { this.GetCatalogId(catalogItem) };
+                }
+                return parentList;
             }
             else
             {
@@ -116,16 +121,30 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
         {
             return parentEntityList?.Split(new char[1] { '|' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
+        
+        public virtual string GetCatalogId(CatalogItemBase catalogItem)
+        {
+            if (string.IsNullOrWhiteSpace(catalogItem.FriendlyId))
+            {
+                return null;
+            }
+
+            var strArray = catalogItem.FriendlyId.Split('-');
+            return strArray[0]?.ToEntityId<Catalog>();
+        }
 
         protected virtual async Task<CatalogItemBase> GetParentCatalogItem(string id, CommercePipelineExecutionContext context)
         {
             if (context.CommerceContext.GetPolicy<CatalogNavigationPolicy>().UseUglySitecoreIds)
             {
-                var dataSet = await Commander.Command<GetMappingsForIdFromDbCommand>().Process(context.CommerceContext, context.CommerceContext.Environment.Name, id).ConfigureAwait(false);
-                id = dataSet.Tables[0]?.Rows[0]?["EntityId"]?.ToString();
-                if (id == null)
+                if (!id.IsEntityId<Catalog>())
                 {
-                    return null;
+                    var dataSet = await Commander.Command<GetMappingsForIdFromDbCommand>().Process(context.CommerceContext, context.CommerceContext.Environment.Name, id).ConfigureAwait(false);
+                    id = dataSet.Tables[0]?.Rows[0]?["EntityId"]?.ToString();
+                    if (id == null)
+                    {
+                        return null;
+                    }
                 }
 
                 return await Commander.GetEntity<CatalogItemBase>(context.CommerceContext, id).ConfigureAwait(false);
