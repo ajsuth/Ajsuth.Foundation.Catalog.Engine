@@ -14,7 +14,9 @@ Adds actions, **Move Image Up** and **Move Image Down**, to the **Images** entit
 
 
 ### Status Entity Views
-Adds Site-Ready Status, Pricing Status, and Inventory Status entity views added to the sellable item and variant views. These views assist the business user in assessing whether the sellable item/variant has been correctly configured to be able to be purchased in the storefront.
+Adds **Site-Ready Status**, **Pricing Status**, and **Inventory Status** entity views added to the sellable item and variant views. These views assist the business user in assessing whether the sellable item/variant has been correctly configured to be able to be purchased in the storefront.
+
+In the **Site-Ready Status** view, the **Price Status** field is based on the **Default Currency** pricing.
 
 **Note:** Customising around storefront/catalog associations, pricing, inventory, etc. may render these values inaccurate.
 
@@ -60,8 +62,7 @@ In the environment configuration files, add the **CatalogFeatureEnablementPolicy
 | Feature                 | Description | Issue |
 | ----------------------- | ----------- | ----- |
 | Status Entity Views     | Bundles not currently supported in Status views. | [#2](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/2) |
-| Status Entity Views     | Status views currently only render status for latest entity version.| [#3](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/3) |
-| Catalog Navigation View | The catalog is not defined as the breadcrumb's root. | [#4](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/4) |
+| Status Entity Views     | Status views currently only render status for latest entity version, regardless of which entity version has is active.| [#3](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/3) |
 | Catalog Navigation View | Associating a category to the catalog and another category will prevent the catalog-category breadcrumb from displaying in the list of breadcrumbs. | [#5](https://github.com/ajsuth/Ajsuth.Foundation.Catalog.Engine/issues/5) |
 
 ## Disclaimer
