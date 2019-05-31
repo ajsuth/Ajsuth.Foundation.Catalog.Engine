@@ -48,8 +48,7 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
             if (!enablementPolicy.CatalogNavigationView
                     || string.IsNullOrEmpty(entityViewArgument?.ViewName)
                     || !entityViewArgument.ViewName.Equals(policy.Master, StringComparison.OrdinalIgnoreCase)
-                    && !entityViewArgument.ViewName.Equals(policy.Details, StringComparison.OrdinalIgnoreCase)
-                    && !entityViewArgument.ViewName.Equals(policy.ConnectCategory, StringComparison.OrdinalIgnoreCase))
+                    && !entityViewArgument.ViewName.Equals(policy.Details, StringComparison.OrdinalIgnoreCase))
             {
                 return await Task.FromResult(entityView).ConfigureAwait(false);
             }

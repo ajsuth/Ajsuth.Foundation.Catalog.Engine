@@ -60,7 +60,7 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
             breadcrumbs.Sort();
             foreach (var breadcrumb in breadcrumbs)
             {
-                var breadcrumbView = new EntityView { Name = "Breadcrumb", Icon = null };
+                var breadcrumbView = new EntityView { Name = "Breadcrumbs", Icon = null };
                 breadcrumbView.Properties.Add(new ViewProperty() { Name = "Breadcrumb", Value = breadcrumb, UiType = "Html" });
                 parentCategoriesView.ChildViews.Add(breadcrumbView);
             }
