@@ -52,7 +52,7 @@ Adds the properties from the **VariationPropertiesPolicy** to the Sellable Item'
 _Variants entity view._
 
 ## Enabling Features
-In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired features to `true`. (See the **Policy Property** column in [Features](#features)). For example:
+In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired features to `true`. (See the **Enablement Policy Property** value under each feature). For example:
 ```javascript
 {
 	"$type": "Ajsuth.Foundation.Catalog.Engine.Policies.CatalogFeatureEnablementPolicy, Ajsuth.Foundation.Catalog.Engine",
