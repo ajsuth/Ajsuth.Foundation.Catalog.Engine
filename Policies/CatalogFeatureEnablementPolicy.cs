@@ -18,6 +18,8 @@ namespace Ajsuth.Foundation.Catalog.Engine.Policies
 
         public bool MoveImageActions { get; set; }
 
-        public bool StatusViews { get; set; }
-    }
+		public bool StatusViews { get; set; }
+
+		public bool VariationProperties { get; set; }
+	}
 }
