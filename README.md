@@ -5,6 +5,7 @@ Custom Sitecore Commerce catalog plugin project with extended functionality for 
 - [Order Image Actions](#order-image-actions)
 - [Status Entity Views](#status-entity-views)
 - [Catalog Navigation View](#catalog-navigation-view)
+- [Sellable Item Variation Properties](#sellable-item-variation-properties)
 ### Order Image Actions
 Adds actions, **Move Image Up** and **Move Image Down**, to the **Images** entity view, to provide the business user the ability to order sellable item and variant images.
 
@@ -22,24 +23,33 @@ In the **Site-Ready Status** view, the **Price Status** field is based on the **
 
 **Enablement Policy Property:** StatusViews
 
-![Order Image Actions](/images/site-ready-status-view.png)
+![Site-Ready Status entity view](/images/site-ready-status-view.png)
 
-![Order Image Actions](/images/pricing-status-view.png)
+![Pricing Status entity view](/images/pricing-status-view.png)
 
-![Order Image Actions](/images/inventory-status-view.png)
+![Inventory Status entity view](/images/inventory-status-view.png)
 
 ### Catalog Navigation View
 Adds the Catalog Navigation entity view to category and sellable item views to assist the business user with Merchandising navigation and identifying the descendent associations. 
 
 **Enablement Policy Property:** CatalogNavigationView
 
-![Order Image Actions](/images/catalog-breadcrumbs-category.png)
+![Catalog Breadcrumbs entity view for Category entities](/images/catalog-breadcrumbs-category.png)
 
 _Category entity view._
 
-![Order Image Actions](/images/catalog-breadcrumbs-sellable-item.png)
+![Catalog Breadcrumbs entity view for Sellable Item entities](/images/catalog-breadcrumbs-sellable-item.png)
 
 _Sellable Item entity view._
+
+### Sellable Item Variation Properties
+Adds the properties from the VariationPropertiesPolicy to the Sellable Item's Variants entity view. 
+
+**Enablement Policy Property:** VariationProperties
+
+![Variation Properites in the Sellable Item's Variants entity view](/images/variation-properties.png)
+
+_Variants entity view._
 
 ## Enabling Features
 In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired features to `true`. (See the **Policy Property** column in [Features](#features)). For example:
