@@ -46,8 +46,7 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
             var entityViewArgument = context.CommerceContext.GetObject<EntityViewArgument>();
             var policy = context.CommerceContext.GetPolicy<KnownCatalogViewsPolicy>();
             var enablementPolicy = context.GetPolicy<Policies.CatalogFeatureEnablementPolicy>();
-            if (!enablementPolicy.CatalogNavigationView
-                    || string.IsNullOrEmpty(entityViewArgument?.ViewName)
+            if (string.IsNullOrEmpty(entityViewArgument?.ViewName)
                     || !entityViewArgument.ViewName.Equals(policy.Master, StringComparison.OrdinalIgnoreCase)
                     && !entityViewArgument.ViewName.Equals(policy.Variant, StringComparison.OrdinalIgnoreCase))
             {
@@ -65,15 +64,12 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 				await this.AddCatalogNavigationView(entityView, sellableItem, context).ConfigureAwait(false);
 			}
 
-			if (entityViewArgument.ViewName.Equals(policy.Master, StringComparison.OrdinalIgnoreCase)
+			var isBundle = sellableItem.HasComponent<BundleComponent>();
+			if (enablementPolicy.VariationProperties
+					&& !isBundle
+					&& entityViewArgument.ViewName.Equals(policy.Master, StringComparison.OrdinalIgnoreCase)
 					&& string.IsNullOrEmpty(entityViewArgument.ForAction))
 			{
-				var isBundle = sellableItem.HasComponent<BundleComponent>();
-				if (isBundle)
-				{
-					return await Task.FromResult(entityView).ConfigureAwait(false);
-				}
-
 				var variantsView = entityView.ChildViews.FirstOrDefault(c => c.Name == policy.SellableItemVariants) as EntityView;
 				UpdateVariantsView(variantsView, sellableItem, context);
 			}
@@ -89,6 +85,11 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 		/// <param name="context">The context.</param>
 		protected virtual void UpdateVariantsView(EntityView variantsView, SellableItem sellableItem, CommercePipelineExecutionContext context)
 		{
+			if (variantsView == null)
+			{
+				return;
+			}
+
 			var variations = sellableItem.GetComponent<ItemVariationsComponent>().ChildComponents.OfType<ItemVariationComponent>().ToList();
 			if (variations != null && variations.Count <= 0)
 			{
@@ -111,6 +112,11 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 		/// <param name="variationPropertyPolicy">The variation property policy.</param>
 		protected virtual void PopulateVariationProperties(EntityView variationView, ItemVariationComponent variation, VariationPropertyPolicy variationPropertyPolicy)
 		{
+			if (variationView == null)
+			{
+				return;
+			}
+
 			foreach (var variationProperty in variationPropertyPolicy.PropertyNames)
 			{
 				var property = GetVariationProperty(variation, variationProperty);
