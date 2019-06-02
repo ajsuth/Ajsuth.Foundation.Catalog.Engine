@@ -43,7 +43,7 @@ _Category entity view._
 _Sellable Item entity view._
 
 ### Sellable Item Variation Properties
-Adds the properties from the VariationPropertiesPolicy to the Sellable Item's Variants entity view. 
+Adds the properties from the **VariationPropertiesPolicy** to the Sellable Item's Variants entity view. 
 
 **Enablement Policy Property:** VariationProperties
 
