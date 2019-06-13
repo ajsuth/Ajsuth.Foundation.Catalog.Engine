@@ -64,6 +64,13 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 				await this.AddCatalogNavigationView(entityView, sellableItem, context).ConfigureAwait(false);
 			}
 
+			if (enablementPolicy.RenderVariantSellableItemLink
+					&& entityViewArgument.ViewName.Equals(policy.Variant, StringComparison.OrdinalIgnoreCase)
+					&& string.IsNullOrEmpty(entityViewArgument.ForAction))
+			{
+				this.UpdateVariantView(entityView, sellableItem, context);
+			}
+
 			var isBundle = sellableItem.HasComponent<BundleComponent>();
 			if (enablementPolicy.VariationProperties
 					&& !isBundle
@@ -76,7 +83,55 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
 
 			return await Task.FromResult(entityView).ConfigureAwait(false);
         }
-		
+
+		/// <summary>
+		/// Updates variant entity view
+		/// </summary>
+		/// <param name="variantView">The variant view.</param>
+		/// <param name="sellableItem">The sellable item.</param>
+		/// <param name="context">The context.</param>
+		protected virtual void UpdateVariantView(EntityView variantView, SellableItem sellableItem, CommercePipelineExecutionContext context)
+		{
+			if (variantView == null || sellableItem == null)
+			{
+				return;
+			}
+
+			var sellableItemView = new EntityView() { Name = "SellableItem", UiHint = "Table" };
+			variantView.ChildViews.Insert(0, sellableItemView);
+
+			var sellableItemMasterView = new EntityView {
+				Name = "MasterSellableItem",
+				Icon = null,
+				EntityId = sellableItem.Id,
+				EntityVersion = sellableItem.EntityVersion,
+				ItemId = sellableItem.Id,
+			};
+			sellableItemMasterView.Properties.Add(
+				new ViewProperty()
+				{
+					Name = "ProductId",
+					RawValue = sellableItem.ProductId,
+					IsReadOnly = true,
+					UiType = "EntityLink"
+				});
+			sellableItemMasterView.Properties.Add(
+				new ViewProperty()
+				{
+					Name = "Name",
+					RawValue = sellableItem.Name,
+					IsReadOnly = true
+				});
+			sellableItemMasterView.Properties.Add(
+				new ViewProperty()
+				{
+					Name = "DisplayName",
+					RawValue = sellableItem.DisplayName,
+					IsReadOnly = true
+				});
+			sellableItemView.ChildViews.Add(sellableItemMasterView);
+		}
+
 		/// <summary>
 		/// Updates variants entity view
 		/// </summary>

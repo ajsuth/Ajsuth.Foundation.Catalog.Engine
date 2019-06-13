@@ -6,6 +6,7 @@ Custom Sitecore Commerce catalog plugin project with extended functionality for 
 - [Status Entity Views](#status-entity-views)
 - [Catalog Navigation View](#catalog-navigation-view)
 - [Sellable Item Variation Properties](#sellable-item-variation-properties)
+- [Variant Sellable Item Entity Link](#variant-sellable-item-entity-link)
 ### Order Image Actions
 Adds actions, **Move Image Up** and **Move Image Down**, to the **Images** entity view, to provide the business user the ability to order sellable item and variant images.
 
@@ -15,7 +16,7 @@ Adds actions, **Move Image Up** and **Move Image Down**, to the **Images** entit
 
 
 ### Status Entity Views
-Adds **Site-Ready Status**, **Pricing Status**, and **Inventory Status** entity views added to the sellable item and variant views. These views assist the business user in assessing whether the sellable item/variant has been correctly configured to be able to be purchased in the storefront.
+Adds **Site-Ready Status**, **Pricing Status**, and **Inventory Status** entity views added to the sellable item and variant page views. These views assist the business user in assessing whether the sellable item/variant has been correctly configured to be able to be purchased in the storefront.
 
 In the **Site-Ready Status** view, the **Price Status** field is based on the **Default Currency** pricing.
 
@@ -30,7 +31,7 @@ In the **Site-Ready Status** view, the **Price Status** field is based on the **
 ![Inventory Status entity view](/images/inventory-status-view.png)
 
 ### Catalog Navigation View
-Adds the Catalog Navigation entity view to category and sellable item views to assist the business user with Merchandising navigation and identifying the descendent associations. 
+Adds the **Catalog Navigation** entity view to category and sellable item page views to assist the business user with Merchandising navigation and identifying the descendent associations. 
 
 **Enablement Policy Property:** CatalogNavigationView
 
@@ -50,6 +51,15 @@ Adds the properties from the **VariationPropertiesPolicy** to the Sellable Item'
 ![Variation Properites in the Sellable Item's Variants entity view](/images/variation-properties.png)
 
 _Variants entity view._
+
+### Variant Sellable Item Entity Link
+Adds a **Sellable Item** entity view to the variant page view to provide a direct link back to the variant's owning sellable item.
+
+**Enablement Policy Property:** RenderVariantSellableItemLink
+
+![Sellable Item entity view in Variant page view](/images/variant-sellable-item-entity-view.png)
+
+_Sellable Item entity view._
 
 ## Enabling Features
 In the environment configuration files, add the **CatalogFeatureEnablementPolicy** and set the desired features to `true`. (See the **Enablement Policy Property** value under each feature). For example:
