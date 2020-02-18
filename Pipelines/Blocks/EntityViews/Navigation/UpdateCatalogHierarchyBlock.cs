@@ -143,7 +143,7 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
                 return string.Empty;
             }
 
-            return GuidUtils.GetDeterministicGuidString(CommerceEntity.IdPrefix<Catalog>() + strArray[2]);
+            return GuidUtility.GetDeterministicGuidString(CommerceEntity.IdPrefix<Catalog>() + strArray[2]);
         }
 
         protected virtual string UpdateHierarchy(RelationshipArgument arg, string targetId, string rawChildren, ValueWrapper<bool> changed)

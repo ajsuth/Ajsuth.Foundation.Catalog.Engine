@@ -147,11 +147,23 @@ namespace Ajsuth.Foundation.Catalog.Engine.Pipelines.Blocks
                     }
                 }
 
-                return await Commander.GetEntity<CatalogItemBase>(context.CommerceContext, id).ConfigureAwait(false);
+            }
+
+            if (id.IsEntityId<SellableItem>())
+            {
+                return await Commander.GetEntity<SellableItem>(context.CommerceContext, id).ConfigureAwait(false);
+            }
+            else if (id.IsEntityId<Category>())
+            {
+                return await Commander.GetEntity<Category>(context.CommerceContext, id).ConfigureAwait(false);
+            }
+            else if (id.IsEntityId<Catalog>())
+            {
+                return await Commander.GetEntity<Catalog>(context.CommerceContext, id).ConfigureAwait(false);
             }
             else
             {
-                return await Commander.GetEntity<CatalogItemBase>(context.CommerceContext, id).ConfigureAwait(false);
+                return null;
             }
         }
     }
